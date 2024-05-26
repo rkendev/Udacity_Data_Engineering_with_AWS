@@ -1,0 +1,33 @@
+SELECT 
+    users.user_id,
+    users.first_name,
+    users.last_name,
+    COUNT(songplays.session_id) AS session_count
+FROM songplays
+JOIN users ON songplays.user_id = users.user_id
+GROUP BY users.user_id, users.first_name, users.last_name
+ORDER BY session_count DESC
+LIMIT 10;
+
+------------------
+SELECT 
+    songs.title AS song_title,
+    artists.name AS artist_name,
+    SUM(songs.duration) AS total_playtime
+FROM songplays
+JOIN songs ON songplays.song_id = songs.song_id
+JOIN artists ON songplays.artist_id = artists.artist_id
+GROUP BY songs.title, artists.name
+ORDER BY total_playtime DESC
+LIMIT 10;
+
+--------------------------
+
+SELECT 
+    location,
+    COUNT(*) AS play_count
+FROM songplays
+GROUP BY location
+ORDER BY play_count DESC
+LIMIT 10;
+
