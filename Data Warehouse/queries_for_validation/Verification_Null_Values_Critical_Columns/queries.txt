@@ -1,0 +1,16 @@
+-- Check for NULL values in songplays table
+SELECT COUNT(*) AS null_songplay_user_id FROM songplays WHERE user_id IS NULL;
+SELECT COUNT(*) AS null_songplay_song_id FROM songplays WHERE song_id IS NULL;
+SELECT COUNT(*) AS null_songplay_artist_id FROM songplays WHERE artist_id IS NULL;
+
+-- Check for NULL values in users table
+SELECT COUNT(*) AS null_user_id FROM users WHERE user_id IS NULL;
+
+-- Check for NULL values in songs table
+SELECT COUNT(*) AS null_song_id FROM songs WHERE song_id IS NULL;
+
+-- Check for NULL values in artists table
+SELECT COUNT(*) AS null_artist_id FROM artists WHERE artist_id IS NULL;
+
+-- Check for NULL values in time table
+SELECT COUNT(*) AS null_start_time FROM time WHERE start_time IS NULL;

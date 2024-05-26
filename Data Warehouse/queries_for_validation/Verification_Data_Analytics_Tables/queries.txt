@@ -1,0 +1,7 @@
+-- Check row counts in staging tables
+SELECT COUNT(*) AS staging_events_count FROM staging_events;
+SELECT COUNT(*) AS staging_songs_count FROM staging_songs;
+
+-- Check a few sample records from staging tables
+SELECT * FROM staging_events LIMIT 10;
+SELECT * FROM staging_songs LIMIT 10;

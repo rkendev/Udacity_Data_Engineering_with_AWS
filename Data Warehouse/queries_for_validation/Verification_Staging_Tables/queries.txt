@@ -1,0 +1,13 @@
+-- Check row counts in analytics tables
+SELECT COUNT(*) AS songplays_count FROM songplays;
+SELECT COUNT(*) AS users_count FROM users;
+SELECT COUNT(*) AS songs_count FROM songs;
+SELECT COUNT(*) AS artists_count FROM artists;
+SELECT COUNT(*) AS time_count FROM time;
+
+-- Check a few sample records from analytics tables
+SELECT * FROM songplays LIMIT 10;
+SELECT * FROM users LIMIT 10;
+SELECT * FROM songs LIMIT 10;
+SELECT * FROM artists LIMIT 10;
+SELECT * FROM time LIMIT 10;
