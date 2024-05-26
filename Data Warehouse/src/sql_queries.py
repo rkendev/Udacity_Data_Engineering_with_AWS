@@ -1,5 +1,16 @@
 import configparser
 
+"""
+This module contains the SQL queries required for creating, dropping, 
+and inserting data into the tables in the Sparkify data warehouse.
+
+The queries are organized into the following categories:
+1. Drop tables queries
+2. Create tables queries
+3. Copy data into staging tables queries
+4. Insert data into final tables queries
+"""
+
 # CONFIG
 config = configparser.ConfigParser()
 config.read('dwh.cfg')
@@ -14,7 +25,7 @@ artist_table_drop = "DROP TABLE IF EXISTS artists"
 time_table_drop = "DROP TABLE IF EXISTS time"
 
 # CREATE TABLES
-staging_events_table_create=("""
+staging_events_table_create = ("""
 CREATE TABLE IF NOT EXISTS staging_events (
     artist VARCHAR,
     auth VARCHAR,
@@ -114,14 +125,14 @@ COPY staging_events FROM '{}'
 CREDENTIALS 'aws_iam_role={}'
 JSON '{}'
 REGION '{}';
-""").format(config.get('S3', 'LOG_DATA').strip("'"), config.get('IAM_ROLE', 'ARN').strip("'"), config.get('S3', 'LOG_JSONPATH').strip("'"), config.get('REGION', 'AWS_BUCKET_REGION'))
+""").format(config.get('S3', 'LOG_DATA').strip("'"), config.get('IAM_ROLE', 'ARN').strip("'"), config.get('S3', 'LOG_JSONPATH').strip("'"), config.get('REGION', 'AWS_BUCKET_REGION').strip("'"))
 
 staging_songs_copy = ("""
 COPY staging_songs FROM '{}'
 CREDENTIALS 'aws_iam_role={}'
 JSON 'auto'
 REGION '{}';
-""").format(config.get('S3', 'SONG_DATA').strip("'"), config.get('IAM_ROLE', 'ARN').strip("'"), config.get('REGION', 'AWS_BUCKET_REGION'))
+""").format(config.get('S3', 'SONG_DATA').strip("'"), config.get('IAM_ROLE', 'ARN').strip("'"), config.get('REGION', 'AWS_BUCKET_REGION').strip("'"))
 
 # FINAL TABLES
 songplay_table_insert = ("""
